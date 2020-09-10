@@ -2,6 +2,8 @@
 Chip8 Disassembler
 Disassembles Chip8 binaries.  Meant to be directly consumed by another project.
 
+Creates target `chip8::disasm`.
+
 ## Building
 Building examples and tests:
 ```
