@@ -20,14 +20,18 @@ namespace chip8::disasm::parser {
 			case 0:
 				switch (nibbles[1]) {
 					case 0:
-						switch (nibbles[3]) {
-							case 0:
-								return CLS{val};
+						switch (nibbles[2]) {
 							case 0xE:
-								return RET{val};
+								switch (nibbles[3]) {
+									case 0:
+										return CLS{val};    //0x00E0
+									case 0xE:
+										return RET{val};    //0x00EE
+								}
 						}
 					default:
-						return SYS{val};
+						throw std::runtime_error("SYS instruction encountered, stopping disassembly");
+						//return SYS{val};
 				}
 			case 1:
 				return JUMPI{val};

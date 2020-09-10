@@ -15,9 +15,14 @@ bool is(const Instruction &i) {
 
 TEST(Parsing, Basic) {
 	Instruction i;
+
+	EXPECT_THROW(parser::parse(0x0000), std::runtime_error);
+	/*
 	i = parser::parse(0x0FFF);
 	EXPECT_TRUE(is<SYS>(i));
-
+	i = parser::parse(0x0000);
+	EXPECT_TRUE(is<SYS>(i));
+	*/
 	i = parser::parse(0x00E0);
 	EXPECT_TRUE(is<CLS>(i));
 
