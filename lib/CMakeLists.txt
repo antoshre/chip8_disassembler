@@ -7,5 +7,5 @@ add_library(${PROJECT_NAME} src/BinFile.cpp src/parser.cpp src/Listing.cpp)
 target_include_directories(${PROJECT_NAME} PRIVATE src PUBLIC include)
 target_link_libraries(${PROJECT_NAME} PRIVATE cppitertools::cppitertools)
 
-add_library(chip8::disassembler ALIAS ${PROJECT_NAME})
+add_library(chip8::disasm ALIAS ${PROJECT_NAME})
 

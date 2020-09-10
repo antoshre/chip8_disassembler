@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 project(tests)
 
 add_executable(all_tests source.cpp parsing.cpp)
-target_link_libraries(all_tests chip8::disassembler)
+target_link_libraries(all_tests chip8::disasm)
 
 find_package(GTest)
 if (NOT GTEST_FOUND)
