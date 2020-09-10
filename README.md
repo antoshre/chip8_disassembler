@@ -2,6 +2,18 @@
 Chip8 Disassembler
 Disassembles Chip8 binaries.  Meant to be directly consumed by another project.
 
+## Building
+Building examples and tests:
+```
+mkdir build
+cd build
+cmake -DBUILD_EXAMPLES=ON -DBUILD_TESTING=ON .
+#Run example
+examples/parse_to_ast ../roms/all_instructions.ch8
+#Run GTest suite 
+tests/all_tests
+```
+
 ## Usage:
 ```
 > parse_to_ast "Chip8 Picture.ch8"

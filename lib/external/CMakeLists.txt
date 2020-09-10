@@ -3,14 +3,15 @@ project(external_deps)
 
 include(FetchContent)
 
+find_package(cppitertools QUIET)
 if (NOT TARGET cppitertools)
+	message(STATUS "cppitertools not found, pulling from remote")
 	set(ENV{cppitertools_INSTALL_CMAKE_DIR} INTERNAL)
 	FetchContent_Declare(
 			cppitertools
 			GIT_REPOSITORY https://github.com/ryanhaining/cppitertools.git
 	)
 	FetchContent_MakeAvailable(cppitertools)
-
 endif ()
 
 #if (NOT TARGET frozen)
