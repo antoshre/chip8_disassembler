@@ -45,5 +45,8 @@ TEST(Parsing, Basic) {
 	i = parser::parse(0x7FFF);
 	EXPECT_TRUE(is<ADDI>(i));
 
+	i = parser::parse(0xFF55);
+	EXPECT_TRUE(is<STORE>(i));
+
 	//TODO: finish basic tests
 }

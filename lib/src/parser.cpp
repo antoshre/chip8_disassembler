@@ -75,7 +75,7 @@ namespace chip8::disasm::parser {
 			case 0xD:
 				return DRAW{val};
 			case 0xE:
-				switch (nibbles[2] << 4u & nibbles[3]) {
+				switch ((nibbles[2] << 4u) | nibbles[3]) {
 					case 0x9E:
 						return SKEK{val};
 					case 0xA1:
@@ -84,7 +84,7 @@ namespace chip8::disasm::parser {
 						throw std::runtime_error("Unknown instruction");
 				}
 			case 0xF:
-				switch (nibbles[2] << 4u & nibbles[3]) {
+				switch ((nibbles[2] << 4u) | nibbles[3]) {
 					case 0x07:
 						return GETD{val};
 					case 0x0A:
