@@ -25,13 +25,13 @@ namespace chip8::disasm {
 				//Assume we have hit the end of instructions, the rest of is data
 				break;
 			}
-			listing.push_back(inst);
+			instructions.push_back(inst);
 		}
 	}
 
 	std::ostream &operator<<(std::ostream &os, const Listing &obj) {
 		os << "Listing:\n";
-		for (const Instruction &inst : obj.listing) {
+		for (const Instruction &inst : obj.instructions) {
 			std::visit([&os](auto &&i) {
 				os << std::hex << std::uppercase << std::setw(4) << std::setfill('0') << i.bin << ": ";
 				os << i.get_mnemonic() << "\t| " << i.get_c_equiv();

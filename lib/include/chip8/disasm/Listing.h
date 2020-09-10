@@ -12,9 +12,9 @@
 namespace chip8::disasm {
 	class BinFile;
 
-	class Listing {
-		std::vector<Instruction> listing;
-	public:
+	struct Listing {
+		std::vector<Instruction> instructions;
+
 		explicit Listing(const BinFile &bin);
 
 		friend std::ostream &operator<<(std::ostream &os, const Listing &obj);
