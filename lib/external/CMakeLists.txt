@@ -21,12 +21,12 @@ endif ()
 #    FetchContent_MakeAvailable(frozen)
 #endif()
 #
-if (NOT TARGET ctre)
-	FetchContent_Declare(
-			ctre
-			GIT_REPOSITORY https://github.com/hanickadot/compile-time-regular-expressions.git
-	)
-	FetchContent_MakeAvailable(ctre)
-	#CTRE requires C++20
-	target_compile_features(ctre INTERFACE cxx_std_20)
-endif ()
+#if (NOT TARGET ctre)
+#	FetchContent_Declare(
+#			ctre
+#			GIT_REPOSITORY https://github.com/hanickadot/compile-time-regular-expressions.git
+#	)
+#	FetchContent_MakeAvailable(ctre)
+#	#CTRE requires C++20
+#	target_compile_features(ctre INTERFACE cxx_std_20)
+#endif ()

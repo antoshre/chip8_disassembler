@@ -2,10 +2,7 @@
 // Created by rob on 9/5/20.
 //
 #include <cstdint>
-#include <cstdio>
 #include <stdexcept>
-
-#include "ctre.hpp"
 
 #include "chip8/disasm/Instructions.h"
 
