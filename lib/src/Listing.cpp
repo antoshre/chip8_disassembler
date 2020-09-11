@@ -11,14 +11,16 @@
 #include "chunked.hpp"
 
 namespace chip8::disasm {
-	Listing::Listing(const BinFile &bin) {
+	Listing::Listing(const BinFile &bin, std::uint16_t base = 0x200) {
 		const auto &binary = bin.bin();
+
+		std::uint16_t location = base;
 
 		for (auto &&chunk : iter::chunked(binary, 2)) {
 			std::uint16_t opcode = (chunk[0] << 8u) | chunk[1];
 			Instruction inst;
 			try {
-				inst = parser::parse(opcode);
+				inst = parser::parse(opcode, location++);
 			} catch (std::runtime_error &e) {
 				//std::cerr << "Failed to parse word: ";
 				//std::cerr << std::hex << std::uppercase << std::setw(4) << std::setfill('0') <<  opcode << std::endl;

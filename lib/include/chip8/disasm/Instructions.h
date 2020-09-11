@@ -36,10 +36,11 @@ namespace chip8::disasm {
 			template<typename T>
 			struct inst_base : crtp<T> {
 				std::uint16_t bin;
+				std::uint16_t loc;
 
-				inst_base() : bin(0x0000) {}
+				inst_base() : bin(0x0000), loc(0) {}
 
-				inst_base(std::uint16_t v) : bin(v) {}
+				inst_base(std::uint16_t opcode, std::uint16_t _l) : bin(opcode), loc(_l) {}
 
 				[[nodiscard]] const char *get_mnemonic() const {
 					return this->underlying().mnemonic;

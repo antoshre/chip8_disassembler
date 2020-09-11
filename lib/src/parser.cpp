@@ -8,7 +8,7 @@
 
 namespace chip8::disasm::parser {
 
-	Instruction parse(std::uint16_t val) {
+	Instruction parse(std::uint16_t val, std::uint16_t l) {
 		using namespace chip8::disasm::instruction;
 		std::uint8_t nibbles[4];
 		nibbles[0] = (val & 0xF000u) >> 12u;
@@ -24,89 +24,89 @@ namespace chip8::disasm::parser {
 							case 0xE:
 								switch (nibbles[3]) {
 									case 0:
-										return CLS{val};    //0x00E0
+										return CLS{{val, l}};    //0x00E0
 									case 0xE:
-										return RET{val};    //0x00EE
+										return RET{{val, l}};    //0x00EE
 								}
 						}
 					default:
 						throw std::runtime_error("SYS instruction encountered, stopping disassembly");
-						//return SYS{val};
+						//return SYS{{val, l}};
 				}
 			case 1:
-				return JUMPI{val};
+				return JUMPI{{val, l}};
 			case 2:
-				return CALLI{val};
+				return CALLI{{val, l}};
 			case 3:
-				return SKEI{val};
+				return SKEI{{val, l}};
 			case 4:
-				return SKNEI{val};
+				return SKNEI{{val, l}};
 			case 5:
-				return SKER{val};
+				return SKER{{val, l}};
 			case 6:
-				return SETI{val};
+				return SETI{{val, l}};
 			case 7:
-				return ADDI{val};
+				return ADDI{{val, l}};
 			case 8:
 				switch (nibbles[3]) {
 					case 0:
-						return SETR{val};
+						return SETR{{val, l}};
 					case 1:
-						return ORR{val};
+						return ORR{{val, l}};
 					case 2:
-						return ANDR{val};
+						return ANDR{{val, l}};
 					case 3:
-						return XORR{val};
+						return XORR{{val, l}};
 					case 4:
-						return ADDR{val};
+						return ADDR{{val, l}};
 					case 5:
-						return SUBR{val};
+						return SUBR{{val, l}};
 					case 6:
-						return SHR{val};
+						return SHR{{val, l}};
 					case 7:
-						return SUBR_R{val};
+						return SUBR_R{{val, l}};
 					case 0xE:
-						return SHL{val};
+						return SHL{{val, l}};
 				}
 			case 9:
-				return SKNER{val};
+				return SKNER{{val, l}};
 			case 0xA:
-				return ISETI{val};
+				return ISETI{{val, l}};
 			case 0xB:
-				return JUMPIND{val};
+				return JUMPIND{{val, l}};
 			case 0xC:
-				return RAND{val};
+				return RAND{{val, l}};
 			case 0xD:
-				return DRAW{val};
+				return DRAW{{val, l}};
 			case 0xE:
 				switch ((nibbles[2] << 4u) | nibbles[3]) {
 					case 0x9E:
-						return SKEK{val};
+						return SKEK{{val, l}};
 					case 0xA1:
-						return SKNEK{val};
+						return SKNEK{{val, l}};
 					default:
 						throw std::runtime_error("Unknown instruction");
 				}
 			case 0xF:
 				switch ((nibbles[2] << 4u) | nibbles[3]) {
 					case 0x07:
-						return GETD{val};
+						return GETD{{val, l}};
 					case 0x0A:
-						return KEY{val};
+						return KEY{{val, l}};
 					case 0x15:
-						return SETD{val};
+						return SETD{{val, l}};
 					case 0x18:
-						return SETS{val};
+						return SETS{{val, l}};
 					case 0x1E:
-						return IADDR{val};
+						return IADDR{{val, l}};
 					case 0x29:
-						return SPRITE{val};
+						return SPRITE{{val, l}};
 					case 0x33:
-						return BCD{val};
+						return BCD{{val, l}};
 					case 0x55:
-						return STORE{val};
+						return STORE{{val, l}};
 					case 0x65:
-						return LOAD{val};
+						return LOAD{{val, l}};
 				}
 		}
 		throw std::runtime_error("Unknown instruction");

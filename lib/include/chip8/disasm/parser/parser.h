@@ -8,7 +8,7 @@
 #include "../Instructions.h"
 
 namespace chip8::disasm::parser {
-	Instruction parse(std::uint16_t);
+	Instruction parse(std::uint16_t, std::uint16_t= 0);
 }
 
 #endif //CHIP8_DISASSEMBLER_PARSER_H
