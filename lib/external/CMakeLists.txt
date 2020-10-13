@@ -3,6 +3,8 @@ project(external_deps)
 
 include(FetchContent)
 
+find_package(Boost REQUIRED)
+
 find_package(cppitertools QUIET)
 if (NOT TARGET cppitertools)
 	message(STATUS "cppitertools not found, pulling from remote")
