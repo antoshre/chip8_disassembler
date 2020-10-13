@@ -10,20 +10,13 @@
 #include <cstdint>
 #include <ostream>
 
-#include "boost/format.hpp"
+#include "fmt/core.h"
 
 namespace chip8::disasm {
 
 	namespace instruction {
 
 		namespace detail {
-
-			inline boost::format ignore_extra_args(const std::string &f_string) {
-				using namespace boost::io;
-				boost::format fmter(f_string);
-				fmter.exceptions(all_error_bits ^ (too_many_args_bit));
-				return fmter;
-			}
 
 			//https://www.fluentcpp.com/2017/05/19/crtp-helper/
 			template<typename T>
@@ -47,18 +40,19 @@ namespace chip8::disasm {
 				}
 
 				[[nodiscard]] std::string get_c_equiv() const {
-					//TODO: integrate fmt support
-					//Currently using boost::format
 					//format string arguments: nnn, x, y, kk, n
 
 					//casts are needed because std::uint8_t is typedef'ed as unsigned char or similar
 					//boost format would default-format it as an (unprintable) char before applying formatting
+					return fmt::format(this->underlying().cequiv, nnn(), x(), y(), kk(), n());
+					/*
 					return boost::str(ignore_extra_args(this->underlying().cequiv)
 					                  % (unsigned int) nnn()
 					                  % (unsigned int) x()
 					                  % (unsigned int) y()
 					                  % (unsigned int) kk()
 					                  % (unsigned int) n());
+					                  */
 				}
 
 				[[nodiscard]] std::uint16_t nnn() const {

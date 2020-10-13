@@ -11,10 +11,10 @@
 #include "chunked.hpp"
 
 namespace chip8::disasm {
-	Listing::Listing(const BinFile &bin, std::uint16_t base = 0x200) {
+	Listing::Listing(const BinFile &bin) {
 		const auto &binary = bin.bin();
 
-		std::uint16_t location = base;
+		std::uint16_t location = 0x200;
 
 		for (auto &&chunk : iter::chunked(binary, 2)) {
 			std::uint16_t opcode = (chunk[0] << 8u) | chunk[1];

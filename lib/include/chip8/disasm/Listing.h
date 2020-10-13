@@ -15,7 +15,7 @@ namespace chip8::disasm {
 	struct Listing {
 		std::vector<Instruction> instructions;
 
-		explicit Listing(const BinFile &bin, std::uint16_t);
+		explicit Listing(const BinFile &bin);
 
 		friend std::ostream &operator<<(std::ostream &os, const Listing &obj);
 	};

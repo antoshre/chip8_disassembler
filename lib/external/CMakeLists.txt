@@ -3,7 +3,15 @@ project(external_deps)
 
 include(FetchContent)
 
-find_package(Boost REQUIRED)
+FetchContent_Declare(
+		fmt
+		GIT_REPOSITORY https://github.com/fmtlib/fmt.git
+)
+find_package(fmt QUIET)
+if (NOT TARGET fmt)
+	message(STATUS "fmt not found, pulling from remote")
+	FetchContent_MakeAvailable(fmt)
+endif ()
 
 find_package(cppitertools QUIET)
 if (NOT TARGET cppitertools)
